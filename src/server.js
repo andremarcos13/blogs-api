@@ -1,7 +1,7 @@
 require('dotenv').config();
 const app = require('./app');
 
-// não remova a variável `API_PORT` ou o `listen`
+// não remova a variável `API_PORT` ou o `listen` ok meu chapa
 const port = process.env.API_PORT || 3000;
 
 // não remova esse endpoint

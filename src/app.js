@@ -2,6 +2,7 @@ const express = require('express');
 const User = require('./controllers/login.controller');
 const Users = require('./controllers/user.controller');
 const validateToken = require('./auth/validateJWT');
+const Category = require('./controllers/category.controller');
 // ...
 
 const app = express();
@@ -12,6 +13,7 @@ app.post('/login', User.login);
 app.post('/user', Users.create);
 app.get('/user', validateToken.tokenCheck, Users.getAllUsers);
 app.get('/user/:id', validateToken.tokenCheck, Users.getId);
+app.post('/categories', validateToken.tokenCheck, Category.create);
 // ...
 
 // É importante exportar a constante `app`,

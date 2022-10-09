@@ -5,6 +5,11 @@ const getAll = async () => {
     return users;
 };
 
+const createUser = async ({ displayName, email, password, image }) => {
+    await User.create({ displayName, email, password, image });
+    return createUser;
+};
+
 const getByPasswordAndEmail = async (email, password) => {
     const user = await User.findOne({ where: { email, password } });
     console.log('camada service, getBy', user);
@@ -14,4 +19,5 @@ const getByPasswordAndEmail = async (email, password) => {
 module.exports = {
     getAll,
     getByPasswordAndEmail,
+    createUser,
 };

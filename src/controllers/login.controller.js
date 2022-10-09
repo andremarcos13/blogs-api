@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const UserService = require('../services/userLogin.service');
 
-const secret = process.env.JWT_SECRET || 'secretoken';
+const secret = process.env.JWT_SECRET || 'insert_secret_password';
 
 const login = async (req, res) => {
     const { email, password } = req.body;

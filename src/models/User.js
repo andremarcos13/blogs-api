@@ -28,6 +28,9 @@
         tableName: 'users',
         underscored: true,
         timestamps: false,
+        defaultScope: {
+          attributes: { exclude: ['password'] }, // https://trybecourse.slack.com/archives/C0320DL79QS/p1664311492331089
+        },
     });
 
     User.associate = (models) => {

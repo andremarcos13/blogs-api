@@ -14,6 +14,7 @@ app.post('/user', Users.create);
 app.get('/user', validateToken.tokenCheck, Users.getAllUsers);
 app.get('/user/:id', validateToken.tokenCheck, Users.getId);
 app.post('/categories', validateToken.tokenCheck, Category.create);
+app.get('/categories', validateToken.tokenCheck, Category.getAll);
 // ...
 
 // É importante exportar a constante `app`,

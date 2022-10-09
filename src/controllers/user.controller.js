@@ -22,7 +22,6 @@ const create = async (req, res) => {
 const getAllUsers = async (req, res) => {
     try {
         const allUsers = await UserService.getAll();
-        console.log('all', allUsers);
         return res.status(200).json(allUsers);
     } catch (error) {
         return res.status(500).json({ message: error.message });

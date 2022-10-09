@@ -9,6 +9,15 @@ const getAll = async (req, res) => {
     return res.status(200).json(getAllPosts);
 };
 
+const getById = async (req, res) => {
+    const { id } = req.params;
+    const findById = await BlogPostService.postById(id);
+    if (!findById) {
+        return res.status(404).json({ message: 'Post does not exist' });
+    }
+    return res.status(200).json(findById);
+};
+
 // const create = async (req, res) => {
 //     const { title, content, categoryId } = req.body;
 //     if (!title || !content || categoryId.length) {
@@ -27,4 +36,5 @@ const getAll = async (req, res) => {
 
 module.exports = {
     getAll,
+    getById,
 };

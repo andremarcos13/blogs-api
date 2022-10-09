@@ -23,7 +23,20 @@ const allPosts = async () => {
     return posts;
 };
 
+const postById = async (id) => {
+    const byIdPost = await BlogPost.findByPk(id, {
+        include: [{
+            model: User, as: 'user', attributes: { exclude: ['password'] },
+        },
+        {
+            model: Category, as: 'categories', through: { attributes: [] },
+        }],
+    });
+    return byIdPost;
+};
+
 module.exports = {
     createPost,
     allPosts,
+    postById,
 };

@@ -12,7 +12,6 @@ const createUser = async ({ displayName, email, password, image }) => {
 
 const getByPasswordAndEmail = async (email, password) => {
     const user = await User.findOne({ where: { email, password } });
-    console.log('camada service, getBy', user);
     return user;
 };
 

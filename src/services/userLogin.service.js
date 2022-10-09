@@ -16,8 +16,14 @@ const getByPasswordAndEmail = async (email, password) => {
     return user;
 };
 
+const getUserById = async (id) => {
+    const userById = User.findByPk(id);
+    return userById;
+};
+
 module.exports = {
     getAll,
     getByPasswordAndEmail,
     createUser,
+    getUserById,
 };

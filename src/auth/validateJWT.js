@@ -10,8 +10,9 @@ const tokenCheck = (req, res, next) => {
     }
     try {
         const decoded = jwt.verify(token, secret);
-        req.email = decoded.email;
-        req.id = decoded.id;
+        req.id = decoded.data.userId;
+        // console.log('decoded', decoded);
+        console.log('req id', req.id);
       next();
     } catch (e) {
         res.status(401).json({ message: 'Expired or invalid token' });

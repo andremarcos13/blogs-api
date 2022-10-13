@@ -19,6 +19,7 @@ app.get('/categories', validateToken.tokenCheck, Category.getAll);
 // app.post('post', validateToken.tokenCheck, BlogPost.create);
 app.get('/post', validateToken.tokenCheck, BlogPost.getAll);
 app.get('/post/:id', validateToken.tokenCheck, BlogPost.getById);
+app.put('/post/:id', validateToken.tokenCheck, BlogPost.blogPostUpdate);
 // ...
 
 // É importante exportar a constante `app`,

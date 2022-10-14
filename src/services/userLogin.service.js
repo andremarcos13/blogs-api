@@ -20,9 +20,15 @@ const getUserById = async (id) => {
     return userById;
 };
 
+const deleteUser = async (id) => {
+    const user = await User.findByPk(id);
+    await user.destroy();
+};
+
 module.exports = {
     getAll,
     getByPasswordAndEmail,
     createUser,
     getUserById,
+    deleteUser,
 };

@@ -5,7 +5,7 @@ const postCategoryModelSchema = (sequelize, DataTypes) => {
             allowNull: false,
             type: DataTypes.INTEGER,
             onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+            onDelete: 'CASCADE',
             references: {
               model: "blog_posts",
               key: "id",
@@ -14,8 +14,8 @@ const postCategoryModelSchema = (sequelize, DataTypes) => {
           categoryId: {
             allowNull: false,
             type: DataTypes.INTEGER,
-            onUpdate: 'CASCADE',
-             onDelete: 'CASCADE',
+            // onUpdate: 'CASCADE',
+            //  onDelete: 'CASCADE',
             references: {
               model: "categories",
               key: "id",

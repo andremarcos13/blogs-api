@@ -38,8 +38,10 @@ const blogPostUpdate = async (req, res) => {
 
 const blogPostDelete = async (req, res) => {
     const { id } = req.params;
-    const postId = await BlogPost.findByPk(id);
-    console.log('postId', postId.dataValues);
+    const postId = await BlogPostService.postById(id);
+    // const postId = await BlogPost.findByPk(id);
+    console.log('postId', postId);
+
     if (!postId) {
         return res.status(404).json({
             message: 'Post does not exist',

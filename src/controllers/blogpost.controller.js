@@ -1,4 +1,5 @@
 const BlogPostService = require('../services/blogpost.service');
+const { BlogPost } = require('../models');
 
 const getAll = async (req, res) => {
     const getAllPosts = await BlogPostService.allPosts();
@@ -27,7 +28,6 @@ const blogPostUpdate = async (req, res) => {
         });
     }
     const post = await BlogPostService.updatePost({ id, title, content });
-    console.log('id', post.dataValues.userId);
     if (post.dataValues.userId !== req.id) {
         return res.status(401).json({
             message: 'Unauthorized user',
@@ -36,8 +36,27 @@ const blogPostUpdate = async (req, res) => {
     return res.status(200).json(post);
 };
 
+const blogPostDelete = async (req, res) => {
+    const { id } = req.params;
+    const postId = await BlogPost.findByPk(id);
+    console.log('postId', postId.dataValues);
+    if (!postId) {
+        return res.status(404).json({
+            message: 'Post does not exist',
+          });
+    }
+    if (postId.dataValues.userId !== req.id) {
+        return res.status(401).json({
+            message: 'Unauthorized user',
+          });
+    }
+    await BlogPost.destroy({ where: { id } });
+     return res.status(204).json();
+};
+
 module.exports = {
     getAll,
     getById,
     blogPostUpdate,
+    blogPostDelete,
 };

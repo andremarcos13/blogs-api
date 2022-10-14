@@ -1,7 +1,7 @@
 const { BlogPost, User, Category } = require('../models');
 
-const createPost = async (title, content, userId) => {
-    const post = BlogPost.create({ 
+const createPost = async ({ title, content, userId }) => {
+    const post = await BlogPost.create({ 
         title, 
         content, 
         userId, 

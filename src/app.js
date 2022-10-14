@@ -16,7 +16,7 @@ app.get('/user', validateToken.tokenCheck, Users.getAllUsers);
 app.get('/user/:id', validateToken.tokenCheck, Users.getId);
 app.post('/categories', validateToken.tokenCheck, Category.create);
 app.get('/categories', validateToken.tokenCheck, Category.getAll);
-// app.post('post', validateToken.tokenCheck, BlogPost.create);
+app.post('/post', validateToken.tokenCheck, BlogPost.postCreate);
 app.get('/post', validateToken.tokenCheck, BlogPost.getAll);
 app.get('/post/:id', validateToken.tokenCheck, BlogPost.getById);
 app.put('/post/:id', validateToken.tokenCheck, BlogPost.blogPostUpdate);

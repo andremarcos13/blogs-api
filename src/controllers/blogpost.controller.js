@@ -56,9 +56,24 @@ const blogPostDelete = async (req, res) => {
      return res.status(204).json();
 };
 
+const postCreate = async (req, res) => {
+    const { title, content } = req.body;
+    const newPost = await BlogPostService.createPost({
+        title, content, userId: req.id,
+    });
+    console.log('create new post', newPost);
+    if (!title || !content) {
+        return res.status(400).json({
+            message: 'Some required fields are missing',
+          });
+    }
+    return res.status(201).json(newPost);
+};
+
 module.exports = {
     getAll,
     getById,
     blogPostUpdate,
     blogPostDelete,
+    postCreate,
 };

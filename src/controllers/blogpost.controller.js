@@ -1,5 +1,6 @@
 const BlogPostService = require('../services/blogpost.service');
 const { BlogPost } = require('../models');
+const CategoryService = require('../services/category.service');
 
 const getAll = async (req, res) => {
     const getAllPosts = await BlogPostService.allPosts();
@@ -57,14 +58,21 @@ const blogPostDelete = async (req, res) => {
 };
 
 const postCreate = async (req, res) => {
-    const { title, content } = req.body;
+    const { title, content, categoryIds } = req.body;
     const newPost = await BlogPostService.createPost({
-        title, content, userId: req.id,
+        title, content, userId: req.id, categoryIds,
     });
-    console.log('create new post', newPost);
     if (!title || !content) {
         return res.status(400).json({
             message: 'Some required fields are missing',
+          });
+    }
+    const categoriesValidate = await CategoryService.gellAllById();
+    const ids = categoriesValidate.map((elem) => elem.dataValues.id);
+    const checkPostId = categoryIds.every((elem) => ids.includes(elem));
+    if (checkPostId === false) {
+        return res.status(400).json({
+            message: '"categoryIds" not found',
           });
     }
     return res.status(201).json(newPost);
